@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Talents:jar">
+    <output-path>D:/Main D Disk/New folder/PluginTester/plugins</output-path>
+    <root id="archive" name="Talents.jar">
+      <element id="module-output" name="Talents" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/fr/mrmicky/FastParticles/2.0.1/fastparticles-2.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/cryptomorin/XSeries/13.0.0/XSeries-13.0.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
