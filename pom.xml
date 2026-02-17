@@ -10,9 +10,9 @@
     <artifactId>Talents</artifactId>
     <version>2.0</version>
     <packaging>pom</packaging>
-
     <name>Talents Parent</name>
 
+    <!-- ===== MODULES ===== -->
     <modules>
         <module>Talents-plugin</module>
         <module>NMSBridge</module>
@@ -20,11 +20,13 @@
         <module>v1_12_R1</module>
     </modules>
 
+    <!-- ===== GLOBAL PROPERTIES ===== -->
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- ===== MANAGED DEPENDENCIES (shared versions) ===== -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -32,25 +34,36 @@
                 <artifactId>packetevents-spigot</artifactId>
                 <version>2.7.0</version>
             </dependency>
+
             <dependency>
                 <groupId>com.andrei1058.bedwars</groupId>
                 <artifactId>BedWars1058</artifactId>
                 <version>24.9</version>
                 <scope>provided</scope>
             </dependency>
+
             <dependency>
                 <groupId>com.github.cryptomorin</groupId>
                 <artifactId>XSeries</artifactId>
                 <version>13.2.0</version>
             </dependency>
+
+            <dependency>
+                <groupId>me.clip</groupId>
+                <artifactId>placeholderapi</artifactId>
+                <version>2.11.6</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <!-- ===== REPOSITORIES ===== -->
     <repositories>
         <repository>
             <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
+
         <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
