@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+<<<<<<< HEAD
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../../javadoc/Talents" />
     <option name="OTHER_OPTIONS" value="-encoding UTF-8 -charset UTF-8 -docencoding UTF-8 -Xdoclint:none -quiet" />
     <option name="OPEN_IN_BROWSER" value="false" />
   </component>
+=======
+>>>>>>> 0bbc2847e37236fcbd3945b1b77a896540e20b95
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
