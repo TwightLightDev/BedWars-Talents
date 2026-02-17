@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/NMSBridge/NMSBridge.iml" filepath="$PROJECT_DIR$/NMSBridge/NMSBridge.iml" />
       <module fileurl="file://$PROJECT_DIR$/Talents-plugin/Talents-plugin.iml" filepath="$PROJECT_DIR$/Talents-plugin/Talents-plugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/v1_12_R1/v1_12_R1.iml" filepath="$PROJECT_DIR$/v1_12_R1/v1_12_R1.iml" />
       <module fileurl="file://$PROJECT_DIR$/v1_8_R3/v1_8_R3.iml" filepath="$PROJECT_DIR$/v1_8_R3/v1_8_R3.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/Talents.iml" filepath="$PROJECT_DIR$/Talents.iml" />
->>>>>>> 0bbc2847e37236fcbd3945b1b77a896540e20b95
     </modules>
   </component>
 </project>

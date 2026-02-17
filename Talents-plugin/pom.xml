@@ -112,8 +112,8 @@
             <version>2.0</version>
         </dependency>
         <dependency>
-        <groupId>me.clip</groupId>
-        <artifactId>placeholderapi</artifactId>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
         </dependency>
         <dependency>
             <groupId>net.objecthunter</groupId>
