@@ -1,7 +1,0 @@
-name: Talents
-version: '${project.version}'
-main: org.twightlight.talents.Talents
-softdepend: [ PlaceholderAPI, BedWars1058 ]
-load: STARTUP
-commands:
-  talents:
