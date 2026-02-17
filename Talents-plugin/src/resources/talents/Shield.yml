@@ -1,0 +1,21 @@
+Shield:
+  display-name: Anh hùng khiên
+  location:
+    x: 8
+    y: 15
+  requirements:
+  - 'Thrust:10'
+  custom-values:
+  - 'level * 0.1'
+  item:
+    material: OBSIDIAN
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Khi kết liễu đối thủ, nhận được {value_0}% TL kích hoạt khiên'
+    - '&7và {value_0}% TL giảm ST của khiên, cộng dồn tối đa 5 lần.'
+    - '{state}'

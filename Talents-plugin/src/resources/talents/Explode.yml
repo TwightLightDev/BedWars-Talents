@@ -1,0 +1,20 @@
+Explode:
+  display-name: Naruto
+  location:
+    x: 5
+    y: 0
+  custom-values:
+  - 'level * 2.5'
+  requirements:
+  - 'Endurance:10'
+  item:
+    material: FIRE_CHARGE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Tăng sát thương đạn lửa thêm {value_0}%.'
+    - '{state}'

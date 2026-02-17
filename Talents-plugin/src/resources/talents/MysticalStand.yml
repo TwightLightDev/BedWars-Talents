@@ -1,0 +1,23 @@
+MysticalStand:
+  display-name: Bóng ma
+  location:
+    x: -2
+    y: 16
+  custom-values:
+  - 'level * 1.5'
+  - '10 + level * 0.5'
+  requirements:
+  - 'StrongBoom:15'
+  item:
+    material: GOLDEN_SWORD
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Đòn đánh thường có xác suất {value_0}% gây ra thêm'
+    - '&71 đòn đánh phụ. Đòn đánh này có tỷ số ST bằng {value_1}%'
+    - '&7ST đòn đánh gốc.'
+    - '{state}'

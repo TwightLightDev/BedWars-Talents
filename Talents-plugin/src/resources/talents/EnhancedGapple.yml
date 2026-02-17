@@ -1,0 +1,20 @@
+EnhancedGapple:
+  display-name: Táo dai
+  location:
+    x: 7
+    y: 6
+  requirements:
+  - 'ChampionsBonus:10'
+  custom-values:
+  - 'level * 2.5'
+  item:
+    material: ENCHANTED_GOLDEN_APPLE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Mỗi khi ăn táo vàng, có {value_0}% nhận thêm hiệu ứng.'
+    - '{state}'

@@ -1,0 +1,16 @@
+Thorns_I:
+  display-name: Gai I
+  item:
+    material: PLAYER_HEAD
+    name: '&9Gai I'
+    amount: 1
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjMwYzNjNWQ5NjY5ZmRjZmQ5NWVhZmRiYTdlNWU5YThjNjRkODhjMGI3MDA3MmI0YWJkZmZjYjAzYTkwZTZjIn19fQ=='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Giảm sát thương +0.7%.'
+    - '&7Giảm hồi máu +2.1%.'
+    - '{state}'

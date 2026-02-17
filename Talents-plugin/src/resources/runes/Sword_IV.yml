@@ -1,0 +1,15 @@
+Sword_IV:
+  display-name: Kiếm IV
+  item:
+    material: PLAYER_HEAD
+    name: '&cKiếm IV'
+    amount: 4
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTIyMjg3NjVkZjBlMmViZDZjM2EzZmRlMDcwZGRjOGM1NTFjZWI0YTQzYjk1OWUxYzQ0ZDM0OWNlNTE2NTYwIn19fQ=='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Sát thương kiếm +0.4.'
+    - '{state}'

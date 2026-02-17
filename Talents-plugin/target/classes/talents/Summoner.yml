@@ -1,0 +1,22 @@
+Summoner:
+  display-name: Triệu hồi sư
+  location:
+    x: -4
+    y: 16
+  custom-values:
+  - 'level * 3.5'
+  - '10 + level'
+  requirements:
+  - 'StrongBoom:15'
+  item:
+    material: SNOWBALL
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Mũi tên bắn trúng đối thủ có xác suất {value_0}%.'
+    - '&7triệu hồi 1 bedbug trong {value_1} giây.'
+    - '{state}'

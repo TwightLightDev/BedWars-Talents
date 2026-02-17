@@ -1,0 +1,15 @@
+Tenacity_IV:
+  display-name: Cứng rắn IV
+  item:
+    material: PLAYER_HEAD
+    name: '&9Cứng rắn IV'
+    amount: 4
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2RjNTdjNzVhZGYzOWVjNmYwZTA5MTYwNDlkZDk2NzFlOThhOGExZTYwMDEwNGU4NGU2NDVjOTg4OTUwYmQ3In19fQ=='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Giảm sát thương chí mạng +7%.'
+    - '{state}'

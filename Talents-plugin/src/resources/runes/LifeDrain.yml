@@ -1,0 +1,19 @@
+LifeDrain:
+  display-name: Hút hồn
+  required-rune: Crit_Rate
+  item:
+    material: PLAYER_HEAD
+    name: '&cHút hồn'
+    amount: 1
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTlkOWVmMTU5YmMyMjkxNjdmYjg3ODA3NDJjZWU4ZmVkMDhiMDIxZTg1ZjBkMzRmMzlkNDM4MDVlZTNmNjM0OSJ9fX0='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Hút máu +12%.'
+    - ''
+    - '&6Hiệu ứng đặc biệt {color}({amount}/3) &b(Tỷ lệ chí mạng).'
+    - '{color}Tấn công có 30% cướp 1HP.'
+    - '{state}'

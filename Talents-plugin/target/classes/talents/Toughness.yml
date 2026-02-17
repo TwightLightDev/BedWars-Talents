@@ -1,0 +1,20 @@
+Toughness:
+  display-name: Cứng cáp
+  location:
+    x: 1
+    y: 2
+  requirements:
+  - 'Absorption:10'
+  custom-values:
+  - 'level'
+  item:
+    material: IRON_CHESTPLATE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Giảm ST +{value_0}%.'
+    - '{state}'

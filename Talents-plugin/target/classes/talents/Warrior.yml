@@ -1,0 +1,22 @@
+Warrior:
+  display-name: Chiến binh
+  location:
+    x: 4
+    y: 19
+  requirements:
+  - 'ItemMerchant:15'
+  custom-values:
+  - 'level * 0.05'
+  item:
+    material: YELLOW_WOOL
+    data: 4
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Khi kết liễu đối thủ, nhận được {value_0} máu tối đa,'
+    - '&7cộng dồn tối đa 5 lần.'
+    - '{state}'

@@ -1,0 +1,21 @@
+Frozen:
+  display-name: Đông cứng
+  location:
+    x: -4
+    y: 8
+  custom-values:
+    - 'level * 1.5'
+  requirements:
+    - 'DiamondProjectiles:10'
+  item:
+    material: PACKED_ICE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_ENCHANTS
+      - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+      - '&7Tấn công tầm xa gây hiệu ứng đóng băng'
+      - '&7với xác suất {value_0}% trong 1.5 giây.'
+      - '{state}'

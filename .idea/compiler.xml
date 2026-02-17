@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="v1_12_R1" />
+        <module name="NMSBridge" />
+        <module name="Talents-plugin" />
+        <module name="v1_8_R3" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

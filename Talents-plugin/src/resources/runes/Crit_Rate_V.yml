@@ -1,0 +1,15 @@
+Crit_Rate_V:
+  display-name: Tỷ lệ chí mạng V
+  item:
+    material: PLAYER_HEAD
+    name: '&cTỷ lệ chí mạng V'
+    amount: 5
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWMxZmU4MzlhOTA4YTA3MWNjNjNmMjY2ZmQ2MTQyYTEwNjA3M2ZkMjY5ZWRhMTJjMzJjMjM5ZjRkYmQwMzIyZiJ9fX0='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Tỷ lệ chí mạng +8%.'
+    - '{state}'

@@ -1,0 +1,20 @@
+CharmingProjectiles:
+  display-name: Mê hoặc
+  location:
+    x: -5
+    y: 4
+  custom-values:
+  - 'level * 0.5'
+  requirements:
+  - 'LifeSteal:10'
+  item:
+    material: SPIDER_EYE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Tăng {value_0}% hút máu tầm xa.'
+    - '{state}'

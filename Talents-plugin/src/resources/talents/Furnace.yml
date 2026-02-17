@@ -1,0 +1,21 @@
+Furnace:
+  display-name: Lò nung
+  location:
+    x: 7
+    y: 8
+  requirements:
+  - 'ChampionsBonus:10'
+  custom-values:
+  - 'level * 0.75'
+  item:
+    material: FURNACE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Mỗi khi nhặt tài nguyên, có {value_0}% nhận được thêm 1'
+    - '&7vật phẩm y hệt.'
+    - '{state}'

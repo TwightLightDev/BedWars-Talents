@@ -1,0 +1,21 @@
+CurseMaster:
+  display-name: Nguyền sư
+  location:
+    x: -3
+    y: 10
+  custom-values:
+  - 'level * 0.5'
+  requirements:
+  - 'Breezing:10'
+  - 'Frozen:10'
+  item:
+    material: ENCHANTING_TABLE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Tăng {value_0}% xuyên phá phù phép.'
+    - '{state}'

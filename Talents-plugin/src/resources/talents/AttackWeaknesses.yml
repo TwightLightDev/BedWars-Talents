@@ -1,0 +1,21 @@
+AttackWeaknesses:
+  display-name: Điểm yếu
+  location:
+    x: -1
+    y: 13
+  custom-values:
+  - 'level'
+  requirements:
+  - 'SoulStealing:10'
+  - 'Parry:10'
+  item:
+    material: DIAMOND_SWORD
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Tăng TLCM cận chiến thêm {value_0}%.'
+    - '{state}'

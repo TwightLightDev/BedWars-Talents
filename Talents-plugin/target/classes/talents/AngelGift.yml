@@ -1,0 +1,23 @@
+AngelGift:
+  display-name: Mạnh thường quân
+  location:
+    x: 5
+    y: 15
+  requirements:
+  - 'Shield:10'
+  - 'EndStoneTomb:10'
+  - 'Shepherd:10'
+  custom-values:
+  - 'level'
+  - '(1 + round(level / 10))'
+  item:
+    material: FURNACE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Khi hồi sinh, nhận được {value_0} thỏi sắt và {value_1} thỏi vàng.'
+    - '{state}'

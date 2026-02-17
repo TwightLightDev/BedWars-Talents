@@ -1,0 +1,21 @@
+CharmingProjectiles:
+  display-name: Mê hoặc
+  location:
+    x: -5
+    y: 4
+  custom-values:
+  - 'level * 0.5'
+  requirements:
+  - 'LifeSteal:10'
+  item:
+    material: PLAYER_HEAD
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjA2NDc1ODI4MzY0ODA1NmMyYThkMjY1MmY2NWMxMDQ5YWI0ZmRkMDU2YWM3NjZhYmUxODZjZTdjMzljM2QxNSJ9fX0='
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Tăng {value_0}% hút máu tầm xa.'
+    - '{state}'

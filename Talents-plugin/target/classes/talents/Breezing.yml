@@ -1,0 +1,21 @@
+Breezing:
+  display-name: Buốt giá
+  location:
+    x: -2
+    y: 8
+  custom-values:
+    - 'level * 1.5'
+  requirements:
+    - 'Sharpness:10'
+  item:
+    material: SNOWBALL
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+      - HIDE_ATTRIBUTES
+      - HIDE_ENCHANTS
+      - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+      - '&7Tấn công cận chiến gây hiệu ứng làm chậm I'
+      - '&7với xác suất {value_0}% trong 1.5 giây.'
+      - '{state}'

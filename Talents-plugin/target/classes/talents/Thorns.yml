@@ -1,0 +1,21 @@
+Thorns:
+  display-name: Gai
+  location:
+    x: 3
+    y: 16
+  requirements:
+  - 'Reincarnation:15'
+  - 'AngelGift:15'
+  custom-values:
+  - 'level * 2'
+  item:
+    material: SLIME_BALL
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Giảm {value_0}% khả năng hút máu của kẻ tấn công.'
+    - '{state}'

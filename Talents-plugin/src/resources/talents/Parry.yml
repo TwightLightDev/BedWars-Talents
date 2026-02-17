@@ -1,0 +1,20 @@
+Parry:
+  display-name: Chống đỡ
+  location:
+    x: 0
+    y: 12
+  requirements:
+  - 'Block:10'
+  custom-values:
+  - 'level'
+  item:
+    material: BEDROCK
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Tăng {value_0}% tỷ lệ kích hoạt khiên.'
+    - '{state}'

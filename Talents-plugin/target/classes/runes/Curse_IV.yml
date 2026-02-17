@@ -1,0 +1,15 @@
+Curse_IV:
+  display-name: Nguyền rủa IV
+  item:
+    material: PLAYER_HEAD
+    name: '&9Nguyền rủa IV'
+    amount: 4
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjJkMjc5MzZiZTkwNzA5MDQ2ZDliNGVlYzRlMmE2N2Q2ZWQ1ODNlNGNmOTRmNTNjMDU2OTQzMTM1NzQyMyJ9fX0='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Khả năng nguyền rủa khi bị tấn công +4.8%.'
+    - '{state}'

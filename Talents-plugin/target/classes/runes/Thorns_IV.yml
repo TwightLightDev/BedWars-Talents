@@ -1,0 +1,16 @@
+Thorns_IV:
+  display-name: Gai IV
+  item:
+    material: PLAYER_HEAD
+    name: '&9Gai IV'
+    amount: 4
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjMwYzNjNWQ5NjY5ZmRjZmQ5NWVhZmRiYTdlNWU5YThjNjRkODhjMGI3MDA3MmI0YWJkZmZjYjAzYTkwZTZjIn19fQ=='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Giảm sát thương +1.8%.'
+    - '&7Giảm hồi máu +4.5%.'
+    - '{state}'

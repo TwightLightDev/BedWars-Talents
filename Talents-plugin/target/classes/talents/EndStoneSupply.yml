@@ -1,0 +1,20 @@
+EndStoneSupply:
+  display-name: Đá kết thúc
+  location:
+    x: 2
+    y: 10
+  requirements:
+  - 'Tenacity:10'
+  custom-values:
+  - 'level'
+  item:
+    material: END_STONE
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Bắt đầu trận đấu nhận được {value_0} đá kết thúc.'
+    - '{state}'

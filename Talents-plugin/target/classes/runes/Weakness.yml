@@ -1,0 +1,22 @@
+Weakness:
+  display-name: Điểm yếu
+  required-rune: Protect
+  item:
+    material: PLAYER_HEAD
+    name: '&9Điểm yếu'
+    amount: 1
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjI1YmU4ZWZjYjFjNTAzODc5MTJhZTQ4ZTBiZGQwMGNjOWU3YzdjNWZkMjAwNzJkODI4ZTBlOTk5ZTQ4Zjg3ZSJ9fX0='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Máu tối đa +1.5.'
+    - ''
+    - '&6Hiệu ứng đặc biệt {color}({amount}/3) &b(Bảo hộ).'
+    - '{color}Khi nhận sát thương sẽ có 30% tỷ lệ'
+    - '{color}gây hiệu ứng &bYếu đuối {color}lên đối'
+    - '{color}thủ.'
+    - ' &bYếu đuối: {color}Giảm 20% sát thương gây ra.'
+    - '{state}'

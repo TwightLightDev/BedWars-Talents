@@ -1,0 +1,21 @@
+Thrust:
+  display-name: Xuyên huyết
+  location:
+    x: 8
+    y: 13
+  requirements:
+  - 'BountyHunter:10'
+  custom-values:
+  - 'level * 0.5'
+  item:
+    material: PRISMARINE_SHARD
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Khi kết liễu đối thủ, nhận được {value_0} xuyên giáp,'
+    - '&7và {value_0} xuyên phù phép.'
+    - '{state}'

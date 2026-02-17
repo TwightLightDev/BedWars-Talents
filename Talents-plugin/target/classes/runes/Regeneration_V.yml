@@ -1,0 +1,15 @@
+Regeneration_V:
+  display-name: Hồi máu V
+  item:
+    material: PLAYER_HEAD
+    name: '&9Hồi máu V'
+    amount: 5
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTU3NTJjOGY0MjIwZTJiM2UzOTc1NTU2ODQ1NDYwNjEzYWFlYjRkYjBjNjRiYTFjZTk2ZmFiZjNkNmVjMzVkYyJ9fX0='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Hồi máu +0.45/5s.'
+    - '{state}'

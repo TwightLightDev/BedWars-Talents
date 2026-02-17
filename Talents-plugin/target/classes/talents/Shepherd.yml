@@ -1,0 +1,21 @@
+Shepherd:
+  display-name: Người chăn cừu
+  location:
+    x: 4
+    y: 12
+  requirements:
+  - 'WoolTomb:10'
+  custom-values:
+  - 'level'
+  item:
+    material: PLAYER_HEAD
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGI5ODZhMDIzMDIxZWRkYjZmOGYyZWM0YTczNzRhNzFhYmFiM2I5Yjc5YWY1MzUyNGNmN2QzNmUwMjcxNzMwZiJ9fX0='
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Mỗi khi mua khối len, được thưởng thêm {value_0} khối len.'
+    - '{state}'

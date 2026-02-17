@@ -1,0 +1,15 @@
+Bow_I:
+  display-name: Cung I
+  item:
+    material: PLAYER_HEAD
+    name: '&cCung I'
+    amount: 1
+    texture: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjkzYzUzMjQyZjJkMTA2Y2NkMjliOWM1ZTlmZWRmZTIwYTFiN2JmODJlZDhjNzA5NGYwYzdkZTUwM2EzNmE3MCJ9fX0='
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Sát thương tầm xa +0.25.'
+    - '{state}'

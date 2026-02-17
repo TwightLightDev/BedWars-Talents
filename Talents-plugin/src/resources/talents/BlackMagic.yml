@@ -1,0 +1,21 @@
+BlackMagic:
+  display-name: Ma thuật đen
+  location:
+    x: -5
+    y: 17
+  custom-values:
+  - 'level * 4.25'
+  requirements:
+  - 'Summoner:15'
+  item:
+    material: DISPENSER
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Khi triệu hồi bedbug bởi tài năng &7&lTriệu hồi sư, &7có'
+    - '&7xác suất {value_0}% triệu hồi ra thêm 1 bedbug.'
+    - '{state}'

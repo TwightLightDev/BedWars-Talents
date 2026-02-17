@@ -1,0 +1,35 @@
+KingOfBedWars:
+  display-name: Vua giường chiếu
+  location:
+    x: 1
+    y: 21
+  requirements:
+  - 'Gemini:20'
+  - 'Thunder:20'
+  - 'Reflection:20'
+  - 'Warrior:20'
+  - 'Ares:20'
+  custom-values:
+  - 'level * 2.5'
+  - 'level'
+  - 'level * 0.8'
+  - '0.05 * level'
+  - 'level * 0.15'
+  item:
+    material: RED_BED
+    name: '{color}{displayName}{levelRoman}'
+    flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_UNBREAKABLE
+    unbreakable: true
+    lore:
+    - '&7Mỗi khi gây sát thương:'
+    - '&7 + Có xác suất {value_0}% tăng {value_1}% sát thương.'
+    - '&7Mỗi khi nhận sát thương:'
+    - '&7 + Có xác suất {value_0}% giảm {value_2}% sát thương.'
+    - '&7Và khi máu <= 50% mà phải chịu ST sẽ'
+    - '&7đưa bản thân vào trạng thái &c&lđạo tàn bụ'
+    - '&7trong {value_4} giây. (Hồi chiêu: 6 giây).'
+    - '&8* &c&lĐạo tàn bụ: tăng 12% TLCM, 25% STCM, 2 Xuyên giáp.'
+    - '{state}'
