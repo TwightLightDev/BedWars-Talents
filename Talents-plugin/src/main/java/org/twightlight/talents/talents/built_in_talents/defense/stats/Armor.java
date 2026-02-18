@@ -24,7 +24,7 @@ public class Armor extends Talent {
             StatsMap map = PVPManager.getInstance().getStatsMapHandler().getStatMap(p.getUniqueId());
             User user = User.getUserFromUUID(p.getUniqueId());
             int level = user.getTalentLevel(getTalentId());
-            map.getStatContainer(BaseStats.GENERIC_ADDITIONAL_ARMOR.name()).add((double) level / 20);
+            map.getStatContainer(BaseStats.GENERIC_ADDITIONAL_ARMOR.name()).add((double) level);
         });
     }
 }

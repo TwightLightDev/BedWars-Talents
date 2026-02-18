@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.twightlight.pvpmanager.api.calculation.LayeredCalculator;
 import org.twightlight.pvpmanager.api.events.MeleeDamageEvent;
+import org.twightlight.pvpmanager.api.events.RangedDamageEvent;
 import org.twightlight.pvpmanager.api.properties.DamageProperty;
 import org.twightlight.talents.Talents;
 import org.twightlight.talents.dispatcher.EventDispatcher;
@@ -38,6 +39,53 @@ public class SoulCollector extends Skill {
 
     @EventDispatcher.ListenerPriority(EventDispatcher.Priority.NORMAL)
     public void onMeleeAttack(MeleeDamageEvent e) {
+        if (e.isCancelled()) return;
+        Player p = e.getDamagePacket().getAttacker();
+        User user = User.getUserFromUUID(p.getUniqueId());
+
+        int level = user.getSkillLevel(getSkillId());
+        if (!user.getActivatingSkills().contains(getSkillId())) {
+            return;
+        }
+        if (level != 0) {
+
+            if (!user.hasMetadata(soulsMetadataValue) || !(user.getMetadataValue(soulsMetadataValue) instanceof Integer)) {
+                user.setMetadata(soulsMetadataValue, 0);
+            }
+
+            int souls = (int) user.getMetadataValue(soulsMetadataValue);
+
+            souls += Utility.rollChance(level * (!MysticalStand.isExtraAttack(e.getDamagePacket()) ? 1.75D : 0.875D)) ? 2 : 1;
+
+            user.setMetadata(soulsMetadataValue, souls);
+
+
+            if (Utility.rollChance(25.0D) && !MysticalStand.isExtraAttack(e.getDamagePacket())) {
+                user.setMetadata(soulsMetadataValue, 0);
+                playSoulExtraction(e.getDamagePacket().getVictim(), 16);
+
+                double multiplier = 1.0D + (souls * level) * 0.0065D;
+
+                DamageProperty property = e.getDamagePacket().getDamageProperty();
+
+                property.addLayer("soulCollectorLayer", LayeredCalculator.OP_ADD, LayeredCalculator.OP_MULTIPLY, 1, Integer.MAX_VALUE);
+                property.addValueToLayer("soulCollectorLayer", multiplier);
+
+                e.getDamagePacket().getVictim().addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 20, 1, false, false));
+
+                p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 1, false, false));
+                p.playSound(p.getLocation(), XSound.ENTITY_PLAYER_BURP.parseSound(), 5.0F, 3.0F);
+                p.sendMessage("§c§l[Soul Collector] §d Soul Released! §7(+" +
+                        String.format("%.0f", (multiplier - 1) * 100) + "% damage)");
+                if (souls >= 5) {
+                    blockBreak.display(e.getDamagePacket().getVictim().getLocation().clone().add(0, 1, 0));
+                }
+            }
+        }
+    }
+
+    @EventDispatcher.ListenerPriority(EventDispatcher.Priority.NORMAL)
+    public void onRangedAttack(RangedDamageEvent e) {
         if (e.isCancelled()) return;
         Player p = e.getDamagePacket().getAttacker();
         User user = User.getUserFromUUID(p.getUniqueId());

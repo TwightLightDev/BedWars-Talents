@@ -4,19 +4,18 @@ PhantomStrike:
     slot: 12
     page: 2
   custom-values:
-    - "1.2 + level * 0.09"
+    - "2.4 + level * 0.18"
     - "round((1.2 + level * 0.09) * 1.6 * 10) / 10"
-    - "0.25 * level"
+    - "0.45 * level"
+    - "level * 1.5"
   item:
     material: PLAYER_HEAD
     texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjExMDlkOWM2Nzg2Yzc0N2M4N2ZjMzZjOWEyNzFkNTFmZjIwMTYwM2MzOGQyNjE1YWM0ODAzOTA4NjgwZTk4OCJ9fX0="
     name: "{color}{displayName}{levelRoman}"
     lore:
-      - "&fĐòn đánh thứ 5 sẽ kích hoạt &bMa khí"
-      - "&fGây &c{value_0} (+30% ở Lv 20) &esát"
+      - "&fĐòn đánh thứ 5 sẽ kích hoạt &bMa khí,"
+      - "&fgây &c{value_0} ({value_3}% tỷ lệ +60%) &esát"
       - "&ethương đập &fsau &e0.5 giây&f. Đồng thời"
-      - "&fnhận thêm &a{value_1}% &fxuyên giáp trong"
-      - "&f2 giây."
-      - ""
-      - "&8(Stack tồn tại trong 4 giây)."
+      - "&fnhận thêm &a{value_1}% &fhút máu trong"
+      - "&f2 giây và hồi &a2 máu&f."
       - "{state}"

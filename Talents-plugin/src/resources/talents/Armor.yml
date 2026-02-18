@@ -4,7 +4,7 @@ Armor:
     x: 5
     y: 4
   custom-values:
-  - 'level * 0.05'
+  - 'level'
   requirements:
   - 'Blasting:10'
   item:

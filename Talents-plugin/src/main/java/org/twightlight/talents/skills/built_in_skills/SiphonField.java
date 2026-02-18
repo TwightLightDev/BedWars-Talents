@@ -25,26 +25,6 @@ import org.twightlight.talents.skills.Skill;
 import org.twightlight.talents.talents.built_in_talents.offense.skills.melee.MysticalStand;
 import org.twightlight.talents.users.User;
 
-/**
- * SiphonField — AoE stat-stealing aura skill.
- *
- * ACTIVATION: Sneak + melee hit to deploy a Siphon Field centered on yourself.
- * The field persists for a duration, following you as you move.
- *
- * While active:
- * - Enemies inside the field lose CRITICAL_RATE and CRITICAL_DAMAGE (debuffed)
- * - Allies (teammates) inside the field gain those stolen stats as buffs
- *
- * The "siphon" transfers stats from enemies to allies — a zero-sum aura.
- * Only affects players in the field radius.
- *
- * This is an AOE ENEMY DEBUFF → ALLY BUFF TRANSFER. Unique because the user
- * themselves doesn't directly gain — it's the teammates who benefit from proximity.
- *
- * Visual: A rotating pentagram on the ground with green/red energy streams
- * flowing from enemies toward allies. Enemies have red descending particles,
- * allies have green ascending particles.
- */
 public class SiphonField extends Skill {
 
     private String cooldownMetadataValue = "skill.siphonField.cooldown";
@@ -123,8 +103,8 @@ public class SiphonField extends Skill {
         user.setMetadata(activeFieldMetadataValue, true);
 
         int durationTicks = 60 + level * 3; // 3s to 6s
-        double critSteal = 0.1D * level; // Steal from CRITICAL_RATE
-        double critDmgSteal = 0.15D * level; // Steal from CRITICAL_DAMAGE
+        double critSteal = 0.5D * level; // Steal from CRITICAL_RATE
+        double critDmgSteal = 0.75D * level; // Steal from CRITICAL_DAMAGE
 
         IArena arena = util.getArenaByPlayer(p);
         if (arena == null) return;

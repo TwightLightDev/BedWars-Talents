@@ -15,7 +15,7 @@ Marksman:
       - "&fBắn trúng sẽ tích điểm &eNgắm Bắn&f."
       - "&8(Tối đa &e5 điểm&8, tồn tại trong &c5 giây&8)."
       - "&fNếu điểm Ngắm Bắn ≥ 3, tăng {value_1}%"
-      - "&fXuyên giáp trong 3 giây. Nếu điểm Ngắm Bắn "
+      - "&fxuyên giáp trong 3 giây. Nếu Ngắm Bắn"
       - "&f= 5 sẽ reset về 0, gây thêm {value_2}% ST."
       - ""
       - "&eMỗi điểm Ngắm Bắn cung cấp:"

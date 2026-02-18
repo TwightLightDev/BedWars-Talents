@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.twightlight.pvpmanager.api.events.MeleeDamageEvent;
+import org.twightlight.pvpmanager.api.events.RangedDamageEvent;
 import org.twightlight.talents.Talents;
 import org.twightlight.talents.dispatcher.EventDispatcher;
 import org.twightlight.talents.skills.Skill;
@@ -25,23 +26,6 @@ import org.twightlight.talents.talents.built_in_talents.offense.skills.melee.Mys
 import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.CombatUtils;
 
-/**
- * FrostGlyph — Trap placement skill on enemy positions.
- *
- * Each time you melee hit an enemy, an invisible Frost Glyph is inscribed
- * at their CURRENT position. The glyph arms itself after 1 second and then
- * persists for a duration. If ANY enemy (including the original target)
- * walks over a glyph, it detonates — dealing ice damage and applying slowness.
- *
- * Multiple glyphs can be active at once (max scales with level).
- * Glyphs show a subtle snowflake particle so observant enemies can avoid them.
- *
- * This is a TRAP / AREA DENIAL skill. No stacking, no self buffs.
- * Rewards prediction of enemy pathing and map awareness.
- *
- * Visual: A subtle 6-pointed snowflake pattern on the ground while armed,
- * and a dramatic ice crystal explosion on detonation.
- */
 public class FrostGlyph extends Skill {
 
     private String glyphCountMetadataValue = "skill.frostGlyph.count";
@@ -148,7 +132,7 @@ public class FrostGlyph extends Skill {
         // Glyph parameters
         int lifetimeTicks = 200 + level * 10; // 10-15 seconds
         long armDelay = 20L; // 1 second to arm
-        double damage = 1.5D + level * 0.125D; // 1.625 at lv1, 4.0 at lv20
+        double damage = 1D + level * 0.1D;
         int slowDuration = 20 + level; // 1-2 seconds of slowness
         int slowAmplifier = level >= 10 ? 1 : 0;
 
@@ -192,10 +176,117 @@ public class FrostGlyph extends Skill {
                         glyphLoc.getWorld().playSound(glyphLoc,
                                 XSound.ENTITY_PLAYER_HURT_FREEZE.parseSound(), 1.5F, 1.0F);
 
-                        CombatUtils.dealUndefinedDamage(target, damage,
-                                EntityDamageEvent.DamageCause.MAGIC,
-                                Map.of("frost-glyph", true),
-                                Set.of("reductionLayer1"));
+                        CombatUtils.dealTrueDamage(damage, attacker, target);
+
+                        target.addPotionEffect(new PotionEffect(
+                                PotionEffectType.SLOW, slowDuration, slowAmplifier, false, true));
+
+                        target.sendMessage("§b§l[Frost Glyph] §f❄ Frozen trap triggered!");
+                        attacker.sendMessage("§b§l[Frost Glyph] §f❄ " + target.getName() + " triggered your glyph!");
+
+                        glyphs.removeIf(g -> g.location.equals(glyphLoc));
+                        cancel();
+                        return;
+                    }
+                }
+
+                tick++;
+            }
+        }.runTaskTimer(Talents.getInstance(), 0L, 1L).getTaskId();
+
+        glyphs.add(new GlyphData(glyphLoc, armedTime, taskId));
+    }
+
+    @EventDispatcher.ListenerPriority(EventDispatcher.Priority.NORMAL)
+    public void onRangedAttack(RangedDamageEvent e) {
+        if (e.isCancelled()) return;
+        if (e.getDamagePacket().getAttacker() == null) return;
+        if (e.getDamagePacket().getVictim() == null) return;
+        if (MysticalStand.isExtraAttack(e.getDamagePacket())) return;
+
+        Player attacker = e.getDamagePacket().getAttacker();
+        User user = User.getUserFromUUID(attacker.getUniqueId());
+        if (!user.getActivatingSkills().contains(getSkillId())) return;
+        int level = user.getSkillLevel(getSkillId());
+        if (level == 0) return;
+
+        // Cooldown
+        if (user.hasMetadata(cooldownMetadataValue)) {
+            long cd = (Long) user.getMetadataValue(cooldownMetadataValue);
+            if (System.currentTimeMillis() < cd) return;
+        }
+
+        // Max glyphs: 2 + level/5 (2 at lv1-4, 3 at lv5-9, 4 at lv10-14, 5 at lv15-19, 6 at lv20)
+        int maxGlyphs = 2 + level / 5;
+
+        List<GlyphData> glyphs = activeGlyphs.computeIfAbsent(
+                attacker.getUniqueId(), k -> new ArrayList<>());
+
+        // Remove oldest if at max
+        while (glyphs.size() >= maxGlyphs) {
+            GlyphData oldest = glyphs.remove(0);
+            Bukkit.getScheduler().cancelTask(oldest.taskId);
+        }
+
+        // Place glyph at victim's location
+        Location glyphLoc = e.getDamagePacket().getVictim().getLocation().clone();
+        user.setMetadata(cooldownMetadataValue, System.currentTimeMillis() + PLACE_COOLDOWN_MS);
+
+        // Subtle placement sound
+        attacker.playSound(attacker.getLocation(), XSound.BLOCK_SNOW_PLACE.parseSound(), 0.5F, 2.0F);
+
+        IArena arena = util.getArenaByPlayer(attacker);
+        if (arena == null) return;
+        ITeam ownerTeam = arena.getTeam(attacker);
+
+        // Glyph parameters
+        int lifetimeTicks = 200 + level * 10; // 10-15 seconds
+        long armDelay = 20L; // 1 second to arm
+        double damage = 1D + level * 0.1D;
+        int slowDuration = 20 + level; // 1-2 seconds of slowness
+        int slowAmplifier = level >= 10 ? 1 : 0;
+
+        long armedTime = System.currentTimeMillis() + armDelay * 50L;
+
+        int taskId = new BukkitRunnable() {
+            int tick = 0;
+
+            public void run() {
+                if (tick >= lifetimeTicks || !attacker.isOnline()) {
+                    glyphs.removeIf(g -> g.location.equals(glyphLoc));
+                    cancel();
+                    return;
+                }
+
+                // Subtle visual while armed (after arm delay)
+                if (tick >= armDelay && tick % 5 == 0) {
+                    playSnowflake(glyphLoc, 0.5D, tick);
+                }
+
+                // Check for enemies stepping on it (after arm delay)
+                if (tick >= armDelay && tick % 3 == 0) {
+                    for (Entity entity : glyphLoc.getWorld().getNearbyEntities(
+                            glyphLoc, GLYPH_TRIGGER_RADIUS, 1.5D, GLYPH_TRIGGER_RADIUS)) {
+                        if (!(entity instanceof Player)) continue;
+                        if (entity.getUniqueId().equals(attacker.getUniqueId())) continue;
+
+                        Player target = (Player) entity;
+                        User targetUser = User.getUserFromUUID(target.getUniqueId());
+                        if (targetUser == null) continue;
+
+                        IArena tArena = util.getArenaByPlayer(target);
+                        if (tArena == null) continue;
+                        if (tArena.getTeam(target) == ownerTeam) continue;
+
+                        // DETONATE!
+                        playDetonation(glyphLoc);
+
+                        glyphLoc.getWorld().playSound(glyphLoc,
+                                XSound.BLOCK_GLASS_BREAK.parseSound(), 2.0F, 0.5F);
+                        glyphLoc.getWorld().playSound(glyphLoc,
+                                XSound.ENTITY_PLAYER_HURT_FREEZE.parseSound(), 1.5F, 1.0F);
+
+                        CombatUtils.dealTrueDamage(damage, attacker, target);
 
                         target.addPotionEffect(new PotionEffect(
                                 PotionEffectType.SLOW, slowDuration, slowAmplifier, false, true));

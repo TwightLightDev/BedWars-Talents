@@ -8,12 +8,14 @@ import java.util.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 import org.twightlight.pvpmanager.api.events.MeleeDamageEvent;
+import org.twightlight.pvpmanager.api.events.RangedDamageEvent;
 import org.twightlight.talents.Talents;
 import org.twightlight.talents.dispatcher.EventDispatcher;
 import org.twightlight.talents.skills.Skill;
@@ -22,21 +24,6 @@ import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.CombatUtils;
 import org.twightlight.talents.utils.Utility;
 
-/**
- * VoidAnchor — Active movement restriction / opponent tether skill.
- *
- * ACTIVATION: Sneak + melee hit to anchor the enemy to their current position.
- * While anchored, if the target moves more than X blocks from the anchor point,
- * they are violently yanked back to the anchor and take undefined damage.
- *
- * The anchor lasts for a short duration. The target can see the anchor point
- * as a pulsing dark circle at their feet with a tether line to their body.
- *
- * Only ONE anchor per attacker. Cooldown after expiry.
- *
- * This is a pure OPPONENT MOVEMENT RESTRICTION — no self buffs.
- * It punishes enemies who try to flee and rewards aggressive anchoring plays.
- */
 public class VoidAnchor extends Skill {
 
     private String cooldownMetadataValue = "skill.voidAnchor.cooldown";
@@ -76,7 +63,7 @@ public class VoidAnchor extends Skill {
     }
 
     @EventDispatcher.ListenerPriority(EventDispatcher.Priority.NORMAL)
-    public void onMeleeAttack(MeleeDamageEvent e) {
+    public void onRangedAttack(RangedDamageEvent e) {
         if (e.isCancelled()) return;
         if (e.getDamagePacket().getAttacker() == null) return;
         if (!(e.getDamagePacket().getVictim() instanceof Player)) return;
@@ -156,10 +143,15 @@ public class VoidAnchor extends Skill {
                         victim.setVelocity(pullBack);
 
                         // Deal damage
-                        CombatUtils.dealUndefinedDamage(victim, snapDamage,
-                                EntityDamageEvent.DamageCause.MAGIC,
-                                Map.of("void-anchor", true),
-                                Set.of("reductionLayer1"));
+
+                        Bukkit.getScheduler().runTaskLater(Talents.getInstance(), () -> {
+
+                            Arrow arrow = (Arrow) victim.getWorld().spawn(victim.getLocation().clone().add(0.0D, 100.0D, 0.0D), Arrow.class);
+                            arrow.setShooter(attacker);
+                            CombatUtils.dealRangedDamage(arrow, victim, snapDamage,
+                                    Map.of("void-anchor", true, "additional-attack", true), Set.of("damageLayer1"));
+                            arrow.remove();
+                            }, 10L);
 
                         // Effects
                         playSnapEffect(victim, anchorPoint);

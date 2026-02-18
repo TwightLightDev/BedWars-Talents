@@ -1,0 +1,18 @@
+EchoStrike:
+  display-name: "Trảm Âm"
+  location:
+    page: 4
+    slot: 10
+  custom-values:
+    - "0.8 + level * 0.11"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGVkOGExMWEyN2QyMTMwMzgzNzdkMzc0NjFmYmQ4YTZhNzdhYTU1OTVmYWI5MjkyM2MyYzE2MWMyMDZjZDJlYiJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi đòn cận chiến thứ 2 &fgiải phóng"
+      - "&f&b✧Trảm Kích &fbay thẳng về trước,"
+      - "&fxuyên qua kẻ địch trên đường đi và"
+      - "&ftấn công các kẻ địch trong phạm vi &e4"
+      - "&ekhối &fvới sát thương là &c{value_0}."
+      - "{state}"

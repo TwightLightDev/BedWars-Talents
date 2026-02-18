@@ -1,0 +1,24 @@
+Mirage:
+  display-name: "Ảo Ảnh"
+  location:
+    slot: 12
+    page: 4
+  custom-values:
+    - "2.5 + 0.125 * level"
+    - "1 + floor(level / 20)"
+    - "2 + level * 0.15"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGE5OTM0MmUyYzczNTdiMjc4NjM2NDRhNTc5OTIxMjVlNTE3MmUzYjJlMmMxYjc3MWQ4NTIzYWMxZDc5MjhjIn19fQ=="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&6Sneak &f+ chuột phải (cầm kiếm) để triển"
+      - "&fkhai một &dẢo Ảnh&f của bạn. Phân thân"
+      - "&flao về phía trước trong {value_2} giây, khi"
+      - "&dẢo Ảnh&f tiếp cận đối thủ sẽ &c&lphát nổ&f"
+      - "&fgây &c{value_0}&e sát thương trực tiếp"
+      - "&fvà gây &8Mù Lòa &f{value_1} giây cho tất"
+      - "&fcả kẻ thù trong phạm vi 2.5 khối."
+      - ""
+      - "&8(Hồi chiêu: 7 giây)"
+      - "{state}"

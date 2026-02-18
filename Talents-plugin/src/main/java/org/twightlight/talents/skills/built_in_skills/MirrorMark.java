@@ -23,22 +23,7 @@ import org.twightlight.talents.skills.Skill;
 import org.twightlight.talents.talents.built_in_talents.offense.skills.melee.MysticalStand;
 import org.twightlight.talents.users.User;
 
-/**
- * MirrorMark — Opponent-marking support skill.
- *
- * When you melee attack an enemy, you "mark" them with a Mirror Mark for a duration.
- * A marked enemy takes amplified damage from ALL players on YOUR team (not just you).
- * The mark is visible as a rotating diamond particle above the target's head.
- *
- * Only ONE enemy can be marked at a time. Hitting a new enemy transfers the mark.
- * The amplification is a damage LAYER applied when ANY teammate hits the marked target.
- *
- * This is a TEAM UTILITY / OPPONENT DEBUFF skill — the marker doesn't directly
- * gain damage themselves. It rewards target-calling and coordination.
- *
- * Visual: A rotating crystalline diamond above marked enemy's head, with
- * silver end-rod particles trailing them, and a brief red flash on mark application.
- */
+
 public class MirrorMark extends Skill {
 
     // Maps: markerUUID -> victim UUID
@@ -86,10 +71,82 @@ public class MirrorMark extends Skill {
         endRod.setSpeed(0.01);
     }
 
-    // ==================== MARK APPLICATION (melee only) ====================
-
     @EventDispatcher.ListenerPriority(EventDispatcher.Priority.NORMAL)
     public void onMeleeAttackApplyMark(MeleeDamageEvent e) {
+        if (e.isCancelled()) return;
+        if (e.getDamagePacket().getAttacker() == null) return;
+        if (!(e.getDamagePacket().getVictim() instanceof Player)) return;
+        if (MysticalStand.isExtraAttack(e.getDamagePacket())) return;
+
+        Player attacker = e.getDamagePacket().getAttacker();
+        User user = User.getUserFromUUID(attacker.getUniqueId());
+        if (!user.getActivatingSkills().contains(getSkillId())) return;
+        int level = user.getSkillLevel(getSkillId());
+        if (level == 0) return;
+
+        Player victim = (Player) e.getDamagePacket().getVictim();
+
+        IArena arena = util.getArenaByPlayer(attacker);
+        if (arena == null) return;
+        ITeam attackerTeam = arena.getTeam(attacker);
+
+        // Cancel previous mark visual
+        if (visualTasks.containsKey(attacker.getUniqueId())) {
+            visualTasks.get(attacker.getUniqueId()).cancel();
+            visualTasks.remove(attacker.getUniqueId());
+        }
+        if (user.getMetadataValue(markTaskMetadataValue) instanceof BukkitTask) {
+            ((BukkitTask) user.getMetadataValue(markTaskMetadataValue)).cancel();
+        }
+
+        // Apply new mark
+        activeMarks.put(attacker.getUniqueId(), victim.getUniqueId());
+        markerTeams.put(attacker.getUniqueId(), attackerTeam);
+        markerLevels.put(attacker.getUniqueId(), level);
+
+        // Duration: 4s + 0.15s per level (max ~7s at lv20)
+        int durationTicks = 80 + level * 3;
+
+        // Visual flash on mark application
+        flashRed.display(victim.getLocation().add(0, 1.0, 0));
+        attacker.playSound(attacker.getLocation(), XSound.BLOCK_NOTE_BLOCK_PLING.parseSound(), 1.0F, 2.0F);
+        victim.playSound(victim.getLocation(), XSound.ENTITY_ELDER_GUARDIAN_CURSE.parseSound(), 0.5F, 2.0F);
+
+        attacker.sendMessage("§7§l[Mirror Mark] §fMarked §c" + victim.getName() + "§f!");
+
+        // Start rotating diamond visual on victim
+        BukkitTask visualTask = new BukkitRunnable() {
+            int tick = 0;
+
+            public void run() {
+                if (!victim.isOnline() || tick >= durationTicks) {
+                    cancel();
+                    return;
+                }
+                playMarkVisual(victim, tick);
+                tick++;
+            }
+        }.runTaskTimer(Talents.getInstance(), 0L, 2L);
+        visualTasks.put(attacker.getUniqueId(), visualTask);
+
+        // Schedule mark expiry
+        BukkitTask expiryTask = Bukkit.getScheduler().runTaskLater(Talents.getInstance(), () -> {
+            activeMarks.remove(attacker.getUniqueId());
+            markerTeams.remove(attacker.getUniqueId());
+            markerLevels.remove(attacker.getUniqueId());
+            if (visualTasks.containsKey(attacker.getUniqueId())) {
+                visualTasks.get(attacker.getUniqueId()).cancel();
+                visualTasks.remove(attacker.getUniqueId());
+            }
+            if (attacker.isOnline()) {
+                attacker.sendMessage("§7§l[Mirror Mark] §8Mark expired.");
+            }
+        }, durationTicks);
+        user.setMetadata(markTaskMetadataValue, expiryTask);
+    }
+
+    @EventDispatcher.ListenerPriority(EventDispatcher.Priority.NORMAL)
+    public void onRangedAttackApplyMark(RangedDamageEvent e) {
         if (e.isCancelled()) return;
         if (e.getDamagePacket().getAttacker() == null) return;
         if (!(e.getDamagePacket().getVictim() instanceof Player)) return;

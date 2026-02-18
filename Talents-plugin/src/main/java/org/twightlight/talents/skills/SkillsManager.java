@@ -112,6 +112,9 @@ public class SkillsManager {
         register("SiphonField", new SiphonField("SiphonField", normalCost));
         register("FrostGlyph", new FrostGlyph("FrostGlyph", normalCost));
         register("EchoStrike", new EchoStrike("EchoStrike", normalCost));
+        register("Mirage", new Mirage("Mirage", normalCost));
+        register("CursedShot", new CursedShot("CursedShot", normalCost));
+        register("BloodPact", new BloodPact("BloodPact", normalCost));
 
     }
 

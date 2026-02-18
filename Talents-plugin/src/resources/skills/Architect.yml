@@ -15,7 +15,7 @@ Architect:
     lore:
       - "&fĐặt khối để tích lũy &bTầng Xây Dựng&f."
       - "&fMỗi &a50 khối tích &e1 tầng &7(tối đa &e4 tầng&7)."
-      - "&fNgừng xây &c10 giây sẽ bắt đầu mất tích lũy."
+      - "&fNgừng xây &c10 giây&f sẽ bắt đầu mất tích lũy."
       - ""
       - "&eMỗi tầng cung cấp:"
       - "&7• Giảm sát thương: &a+{value_0}%"

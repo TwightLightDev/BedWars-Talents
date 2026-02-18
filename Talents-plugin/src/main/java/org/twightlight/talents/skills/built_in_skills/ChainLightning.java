@@ -25,23 +25,8 @@ import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.CombatUtils;
 import org.twightlight.talents.utils.Utility;
 
-/**
- * ChainLightning — Multi-target chain damage skill.
- *
- * When you hit an enemy, there is a chance (scaling with level) that a lightning
- * bolt chains from the victim to the nearest enemy within range, then to the next,
- * and so on. Each bounce deals reduced damage. Maximum bounces scale with level.
- *
- * This is purely OPPONENT-SIDE — damage only goes to enemies. No self stacks, no self buffs.
- * It rewards fighting near groups of enemies.
- *
- * Visual: A jagged lightning bolt particle line that arcs between targets,
- * with electric blue/white particles and a bright flash at each impact point.
- * Each bounce has a small delay for dramatic effect.
- */
 public class ChainLightning extends Skill {
 
-    private String cooldownMetadataValue = "skill.chainLightning.cooldown";
 
     private com.andrei1058.bedwars.api.BedWars.ArenaUtil util = Talents.getInstance().getAPI().getArenaUtil();
 
@@ -52,7 +37,6 @@ public class ChainLightning extends Skill {
     private ParticleFirework impactSpark;
 
     private static final double CHAIN_RADIUS = 5.0D;
-    private static final long CHAIN_COOLDOWN_MS = 3000L; // 3s internal cooldown
 
     public ChainLightning(String id, List<Integer> costList) {
         super(id, costList);
@@ -104,19 +88,9 @@ public class ChainLightning extends Skill {
         int level = user.getSkillLevel(getSkillId());
         if (level == 0) return;
 
-        // Cooldown check
-        if (user.hasMetadata(cooldownMetadataValue)) {
-            long cd = (Long) user.getMetadataValue(cooldownMetadataValue);
-            if (System.currentTimeMillis() < cd) return;
-        }
 
-        // Chance to proc: 15% + 1.5% per level (max 45% at lv20)
-        double procChance = 15.0D + 1.5D * (double) level;
+        double procChance = 45;
         if (!Utility.rollChance(procChance)) return;
-
-        // Set cooldown
-        user.setMetadata(cooldownMetadataValue,
-                System.currentTimeMillis() + CHAIN_COOLDOWN_MS);
 
         IArena arena = util.getArenaByPlayer(attacker);
         if (arena == null) return;
@@ -178,7 +152,7 @@ public class ChainLightning extends Skill {
                 CombatUtils.dealUndefinedDamage(nextTarget, currentDamage,
                         EntityDamageEvent.DamageCause.LIGHTNING,
                         Map.of("chain-lightning", true),
-                        Set.of("reductionLayer1"));
+                        Set.of("armorLayer"));
 
                 currentTarget = nextTarget;
                 currentDamage *= damageDecay;

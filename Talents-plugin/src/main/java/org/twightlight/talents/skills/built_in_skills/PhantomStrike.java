@@ -17,6 +17,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.twightlight.pvpmanager.api.events.MeleeDamageEvent;
 import org.twightlight.pvpmanager.stats.StatsMap;
+import org.twightlight.pvpmanager.utils.BaseStats;
 import org.twightlight.talents.Talents;
 import org.twightlight.talents.arenas.Arena;
 import org.twightlight.talents.dispatcher.EventDispatcher;
@@ -103,7 +104,7 @@ public class PhantomStrike extends Skill {
             user.setMetadata(hitsMetadataValue, 0);
 
             // Calculate phantom damage
-            double baseDamage = 1.2D + level * 0.09D; // 3.0 at level 20
+            double baseDamage = 2.4D + level * 0.18D; // 3.0 at level 20
             boolean empowered = Utility.rollChance(level * 1.5D); // 30% at level 20
             double finalDamage = empowered ? baseDamage * 1.6D : baseDamage; // 4.8 if empowered
 
@@ -113,10 +114,10 @@ public class PhantomStrike extends Skill {
                 Arena arena1 = Talents.getInstance().getArenaManager().getArenaFromIArena(arena);
                 StatsMap statsMap = arena1.getStatsMapOfUUID(user.getUuid());
                 if (statsMap != null) {
-                    double penBuff = 0.25D * level; // 5.0% at level 20
-                    statsMap.getStatContainer("PENETRATION_RATIO").add(penBuff);
+                    double penBuff = 0.45D * level; // 9.0% at level 20
+                    statsMap.getStatContainer(BaseStats.LIFESTEAL.name()).add(penBuff);
                     Bukkit.getScheduler().runTaskLater(Talents.getInstance(), () -> {
-                        statsMap.getStatContainer("PENETRATION_RATIO").subtract(penBuff);
+                        statsMap.getStatContainer(BaseStats.LIFESTEAL.name()).subtract(penBuff);
                     }, 40L);
                 }
             }
@@ -129,13 +130,15 @@ public class PhantomStrike extends Skill {
 
             attacker.getWorld().playSound(attacker.getLocation(), XSound.ENTITY_PLAYER_ATTACK_SWEEP.parseSound(), 1.5F, 0.6F);
             attacker.getWorld().playSound(victim.getLocation(), XSound.ENTITY_ENDER_DRAGON_FLAP.parseSound(), 1.5F, 2.0F);
-
+            attacker.setHealth(Math.min(attacker.getHealth() + 2, attacker.getMaxHealth()));
             Bukkit.getScheduler().runTaskLater(Talents.getInstance(), () -> {
                 if (victim.isOnline() && User.getUserFromUUID(victim.getUniqueId()) != null) {
                     CombatUtils.dealUndefinedDamage(victim, damage,
                             EntityDamageEvent.DamageCause.ENTITY_ATTACK,
                             Map.of("phantomStrike", true),
-                            Set.of("reductionLayer1"));
+                            Set.of("reductionLayer1", "blockLayer", "KOBW_Defense",
+                                    "weaknessLayer", "ironWillLayer",
+                                    "riftwalkerDefenseLayer"));
 
                     playPhantomImpact(victim, emp);
                     victim.getWorld().playSound(victim.getLocation(), XSound.ENTITY_PLAYER_ATTACK_CRIT.parseSound(), 2.0F, 0.5F);

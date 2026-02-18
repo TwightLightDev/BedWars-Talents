@@ -25,22 +25,6 @@ import org.twightlight.talents.talents.built_in_talents.offense.skills.melee.Mys
 import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.CombatUtils;
 
-/**
- * EchoStrike — Attack form transformation skill.
- *
- * Every 4th melee hit is REPLACED by an "Echo Slash" — instead of normal melee
- * damage, the player fires a visible crescent wave projectile in their look
- * direction. The projectile travels forward, damaging ALL enemies in its path.
- *
- * The 4th hit itself deals reduced melee damage, but the wave compensates by
- * being a ranged AoE skillshot. The wave passes through enemies (piercing).
- *
- * This fundamentally CHANGES how the 4th attack works — it's not a buff,
- * not a stack, but a transformed attack form.
- *
- * Visual: A sweeping crescent arc of cyan/white particles that travels
- * forward like an energy wave, with a sweep attack particle at the origin.
- */
 public class EchoStrike extends Skill {
 
     private String hitCountMetadataValue = "skill.echoStrike.hitCount";
@@ -55,7 +39,7 @@ public class EchoStrike extends Skill {
     private ParticleSweepAttack sweepOrigin;
     private ParticleCrit critImpact;
 
-    private static final int HITS_PER_ECHO = 4;
+    private static final int HITS_PER_ECHO = 2;
     private static final double WAVE_SPEED = 0.8D; // blocks per tick
     private static final double WAVE_MAX_DISTANCE = 10.0D;
     private static final double WAVE_HIT_RADIUS = 1.5D;
@@ -148,8 +132,6 @@ public class EchoStrike extends Skill {
             // Wave damage
             double waveDamage = 0.8D + level * 0.11D; // 0.91 at lv1, 3.0 at lv20
 
-            p.sendMessage("§b§l[Echo Strike] §f✧ Echo Slash!");
-
             // Fire the wave projectile
             IArena arena = util.getArenaByPlayer(p);
             if (arena == null) return;
@@ -158,12 +140,6 @@ public class EchoStrike extends Skill {
             fireEchoWave(p, origin, direction, waveDamage, ownerTeam, level);
         } else {
             user.setMetadata(hitCountMetadataValue, hitCount);
-
-            // Show buildup indicator
-            int remaining = HITS_PER_ECHO - hitCount;
-            if (remaining <= 2) {
-                p.sendMessage("§b§l[Echo Strike] §7" + remaining + " hits until Echo Slash...");
-            }
         }
     }
 
@@ -208,11 +184,9 @@ public class EchoStrike extends Skill {
 
                     alreadyHit.add(target.getUniqueId());
 
-                    // Hit!
-                    CombatUtils.dealUndefinedDamage(target, damage,
-                            EntityDamageEvent.DamageCause.ENTITY_ATTACK,
-                            Map.of("echo-strike", true),
-                            Set.of("reductionLayer1"));
+                    Bukkit.getScheduler().runTaskLater(Talents.getInstance(), () -> {
+                        CombatUtils.dealMeleeDamage(owner, target, damage, Map.of("additional-attack", true), Set.of("damageLayer1"));
+                    }, 10L);
 
                     critImpact.display(target.getLocation().add(0, 1.0, 0));
                     target.getWorld().playSound(target.getLocation(),

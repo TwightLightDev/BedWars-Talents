@@ -1,0 +1,22 @@
+FrostGlyph:
+  display-name: "Phù Ấn Băng Giá"
+  location:
+    page: 3
+    slot: 16
+  custom-values:
+    - "2 + round(level / 5)"
+    - "1 + level * 0.1"
+    - "1 + level/20"
+    - "10 + level * 0.5"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTZhYWI1OGZhMDFmY2U5YWY0NjllZDc0N2FlZDgxMWQ3YmExOGM0NzZmNWE3ZjkwODhlMTI5YzMxYjQ1ZjMifX19"
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi khi tấn công sẽ khắc &b❄Phù Ấn Băng"
+      - "&fvô hình dưới chân kẻ địch, tồn tại trong {value_3}"
+      - "&fgiây, khi kẻ địch dẫm lên sẽ phát nổ, gây"
+      - "&c{value_1} &f&lsát thương chuẩn &r&fvà làm chậm đối"
+      - "&fphương trong &d{value_2} giây&f. Tối đa tồn"
+      - "&ftại &e{value_0} &fphù ấn. &8(Hồi chiêu: 2.5 giây)."
+      - "{state}"

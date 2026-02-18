@@ -1,0 +1,25 @@
+BloodPact:
+  display-name: "Khế ước"
+  location:
+    slot: 11
+    page: 4
+  custom-values:
+    - "8 + 0.6 * level"
+    - "3 + 0.2 * level"
+    - "3 + 0.3 * level"
+    - "4 + level * 0.2"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk1NjgyNWE2NTczNTlhODMyNGYxNDc0OWE1YjIzYjdhNjc1OTY4OTNkNGUzMGIxYzk5MDlhZTczYjNjNjJlYSJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&6Sneak&f + đánh cận chiến để lập &4Khế ước"
+      - "&fvới kẻ thù tồn tại {value_3} giây. Trong"
+      - "&fthời gian hiệu lực, &c{value_0}%&f ST bạn nhận"
+      - "&fsẽ chuyển sang kẻ thù, &c{value_1}%&f ST kẻ"
+      - "&fthù nhận sẽ do bạn chịu."
+      - ""
+      - "&fNếu kẻ thù &cchết &fkhi đang bị trói,"
+      - "&fbạn hồi &a{value_2} HP&f."
+      - "&8(Hồi chiêu: 14 giây)"
+      - "{state}"

@@ -1,0 +1,20 @@
+MirrorMark:
+  display-name: "Dấu Ấn Phản Quang"
+  location:
+    page: 3
+    slot: 12
+  custom-values:
+    - "4 + level * 3/20"
+    - "0.4 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzAyNGE2MGJkNjFhMGIxYTVlNzExOTI3MTM1ZGNhNTBiN2ZiY2M4YzAxZGMyMDNhZWFlN2QwZWNiMDUxMjc5MCJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fTấn công sẽ dán &eDấu Ấn Phản Quang"
+      - "&flên kẻ địch trong &d{value_0} giây."
+      - "&8Mục tiêu bị đánh dấu chịu thêm"
+      - "&c+{value_1}% sát thương &8từ đồng đội."
+      - "&8Tồn tại tối đa 1 dấu ấn, đánh mục tiêu"
+      - "&8mới sẽ làm mất dấu ấn cũ."
+      - "{state}"

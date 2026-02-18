@@ -1,0 +1,20 @@
+ChainLightning:
+  display-name: "Chuỗi Sét"
+  location:
+    page: 3
+    slot: 13
+  custom-values:
+    - "15 + 1.5 * level"
+    - "1 + round(level / 5)"
+    - "0.5 + level * 0.1"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWQyMjU2MzVmZTY2Y2NlZDVlMWYxMDMwYTExYmZiZTFlMjhhODc0NWY5MjBlN2I3MDc2ZWI2NjljOTAyMjgzIn19fQ=="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fTấn công có 45% cơ hội kích hoạt"
+      - "&b⚡Chuỗi Sét&f nảy sang kẻ địch gần đó,"
+      - "&fgây &c{value_2}&f ST trực tiếp, tối đa &e{value_1}"
+      - "&flần nảy trong phạm vi &e5 khối."
+      - "&8Mỗi lần nảy giảm 30% sát thương."
+      - "{state}"

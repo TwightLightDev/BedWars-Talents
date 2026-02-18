@@ -27,23 +27,6 @@ import org.twightlight.talents.talents.built_in_talents.offense.skills.melee.Mys
 import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.CombatUtils;
 
-/**
- * GravityWell — Active zone-control skill.
- *
- * ACTIVATION: Sneak + melee hit to deploy a Gravity Well at the victim's location.
- * The well persists for a duration and creates a visible vortex zone.
- * Enemies inside the zone are pulled toward the center each tick and receive
- * a stacking movement speed debuff + penetration debuff (their armor is weakened).
- *
- * Only ONE well can be active at a time per player. Deploying a new one destroys the old.
- * Cooldown between deployments.
- *
- * This is a PURE ZONE-BASED ENEMY DEBUFF skill — the user gains nothing.
- * It rewards tactical placement and area denial.
- *
- * Visual: A dark purple/black vortex with inward-spiraling particles,
- * a pulsing ring on the ground, and enchantment letters being sucked inward.
- */
 public class GravityWell extends Skill {
 
     private String cooldownMetadataValue = "skill.gravityWell.cooldown";
@@ -61,7 +44,7 @@ public class GravityWell extends Skill {
     private ParticleEnchant enchantSuck;
 
     // Constants
-    private static final long COOLDOWN_TICKS = 300L; // 15 seconds
+    private static final long COOLDOWN_TICKS = 160L; // 15 seconds
     private static final double BASE_RADIUS = 3.0D;
     private static final double PULL_STRENGTH = 0.15D;
 
