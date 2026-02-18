@@ -75,7 +75,7 @@ public class SoulCollector extends Skill {
                 p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 40, 1, false, false));
                 p.playSound(p.getLocation(), XSound.ENTITY_PLAYER_BURP.parseSound(), 5.0F, 3.0F);
                 p.sendMessage("§c§l[Soul Collector] §d Soul Released! §7(+" +
-                        String.format("%.0f", multiplier * 100) + "% damage damage)");
+                        String.format("%.0f", (multiplier - 1) * 100) + "% damage)");
                 if (souls >= 5) {
                     blockBreak.display(e.getDamagePacket().getVictim().getLocation().clone().add(0, 1, 0));
                 }

@@ -2,19 +2,25 @@ package org.twightlight.talents.skills;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.twightlight.talents.Talents;
 import org.twightlight.talents.dispatcher.EventDispatcher;
+import org.twightlight.talents.menus.skills.SkillItem;
+import org.twightlight.talents.menus.skills.SkillsMenuRegistry;
 import org.twightlight.talents.skills.built_in_skills.*;
 import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.Debug;
 import org.twightlight.talents.utils.Utility;
 
+import java.io.File;
+import java.io.InputStream;
 import java.util.*;
 
 public class SkillsManager {
 
     public Map<String, Skill> Skills;
+    public Map<String, SkillItem> SkillItems;
 
     private List<Integer> normalCost = Arrays.asList(100, 100, 100, 100, 100, 250, 250, 250, 250, 250, 375, 375, 375, 375, 375, 475, 475, 475, 475, 475);
     private EventDispatcher dispatcher = new EventDispatcher();
@@ -24,15 +30,45 @@ public class SkillsManager {
     }
 
     public void register(String id, Skill skill, boolean override) {
+        // Load YML file for this skill
+        File file = new File("plugins/Talents/skills/" + id + ".yml");
+        if (!file.exists()) {
+            String path = "skills/" + id + ".yml";
+            InputStream in = Talents.getInstance().getResource(path);
+            if (in == null) {
+                Debug.debugMsg("File " + id + ".yml not found in jar for skill, registering without menu item!");
+                if (override) {
+                    this.Skills.put(id, skill);
+                } else {
+                    this.Skills.putIfAbsent(id, skill);
+                }
+                return;
+            }
+            Talents.getInstance().saveResource(path, false);
+            Debug.debugMsg("File " + id + ".yml not found, load default file!");
+            file = new File("plugins/Talents/skills/" + id + ".yml");
+        }
+
         if (override) {
             this.Skills.put(id, skill);
-            return;
+        } else {
+            this.Skills.putIfAbsent(id, skill);
         }
-        this.Skills.putIfAbsent(id, skill);
+
+        // Create SkillItem and register it in the paginated menu
+        SkillItem skillItem = new SkillItem(id, YamlConfiguration.loadConfiguration(file), skill);
+        SkillItems.putIfAbsent(id, skillItem);
+        SkillsMenuRegistry.setItem(skillItem.getPage(), skillItem.getSlot(), skillItem.getButton());
+        SkillsMenuRegistry.registerSkillItem(skillItem.getPage(), skillItem);
+        Debug.debugMsg("Registered skill with id: " + id + " at page " + skillItem.getPage() + " slot " + skillItem.getSlot());
     }
 
     public Skill getSkillByID(String id) {
         return Skills.getOrDefault(id, null);
+    }
+
+    public SkillItem getSkillItemByID(String id) {
+        return SkillItems.getOrDefault(id, null);
     }
 
     public boolean skillExist(String id) {
@@ -41,7 +77,8 @@ public class SkillsManager {
 
     public SkillsManager() {
         Skills = new HashMap<>();
-        Bukkit.getScheduler().runTaskLater(org.twightlight.talents.Talents.getInstance(), () -> {
+        SkillItems = new HashMap<>();
+        Bukkit.getScheduler().runTaskLater(Talents.getInstance(), () -> {
             registerSkills();
 
             Skills.values().forEach((skill -> {
@@ -50,7 +87,7 @@ public class SkillsManager {
 
             Debug.debugMsg(ChatColor.GREEN + "Successfully registered " + Skills.size() + " skills!");
         }, 40L);
-     }
+    }
 
     private void registerSkills() {
         register("JusticeJudgement", new JusticeJudgement("JusticeJudgement", normalCost));
@@ -68,7 +105,6 @@ public class SkillsManager {
         register("PhantomStrike", new PhantomStrike("PhantomStrike", normalCost));
         register("Resonance", new Resonance("Resonance", normalCost));
         register("RiftWalker", new RiftWalker("RiftWalker", normalCost));
-
     }
 
     public void selectSkill(Player p, int slot, String id) {
@@ -99,7 +135,7 @@ public class SkillsManager {
     }
 
     public boolean upgradeSkill(int amount, String skillId, Player p) {
-        Skill skill = org.twightlight.talents.Talents.getInstance().getSkillsManager().getSkillByID(skillId);
+        Skill skill = Talents.getInstance().getSkillsManager().getSkillByID(skillId);
         User user = User.getUserFromUUID(p.getUniqueId());
         if (skill == null || user == null) return false;
 
@@ -114,7 +150,7 @@ public class SkillsManager {
             return false;
         }
         map.put(skillId, newLevel);
-        return org.twightlight.talents.Talents.getInstance().getDb().update(p, map, "skills", "skills");
+        return Talents.getInstance().getDb().update(p, map, "skills", "skills");
     }
 
     public int resetSkills(Player p) {
@@ -151,7 +187,7 @@ public class SkillsManager {
             return false;
         }
         map.put(skillId, amount);
-        return org.twightlight.talents.Talents.getInstance().getDb().update(p, map, "skills", "skills");
+        return Talents.getInstance().getDb().update(p, map, "skills", "skills");
     }
 
     public Set<String> getRegisteredSkills() {

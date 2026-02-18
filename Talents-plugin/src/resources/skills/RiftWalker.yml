@@ -1,0 +1,22 @@
+RiftWalker:
+  display-name: "Lữ Khách"
+  location:
+    slot: 15
+    page: 2
+  custom-values:
+    - "0.35 * level"
+    - "0.2 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWUxMDEwZDk4OGM3Njk5Mjg1MTc5ODM4NjI4NmVjMjMwNWIwNjdlZGY5MWM1ODUyNjBjNTM2MzY5MGU3OTYxZSJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fDi chuyển &e4 khối &fgiữa các đòn để tích"
+      - "&dNăng Lượng&f. Tối đa &e5&f."
+      - "&fKhoảng cách di chuyển < 1.5 khối sẽ mất"
+      - "&flớp."
+      - ""
+      - "&eMỗi &dNăng Lượng&e sẽ giúp:"
+      - "&7• ST gây ra: &a+{value_0}%"
+      - "&7• ST nhận vào: &a-{value_1}%"
+      - "{state}"

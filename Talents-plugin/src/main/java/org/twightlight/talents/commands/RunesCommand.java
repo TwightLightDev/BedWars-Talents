@@ -12,6 +12,8 @@ import org.twightlight.talents.Talents;
 import org.twightlight.talents.database.SQLite;
 import org.twightlight.talents.menus.runes.RuneItem;
 import org.twightlight.talents.menus.runes.RuneMenu;
+import org.twightlight.talents.menus.runes.RuneSelectMenu;
+import org.twightlight.talents.menus.skills.SkillMenu;
 import org.twightlight.talents.runes.RunesManager;
 import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.Utility;
@@ -21,7 +23,8 @@ public class RunesCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (args.length == 0) {
+        if (args.length == 0 && sender instanceof Player) {
+            RuneMenu.open((Player) sender, RunesManager.categories.get(0));
             return true;
         }
 

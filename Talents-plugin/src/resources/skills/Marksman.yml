@@ -1,0 +1,23 @@
+Marksman:
+  display-name: "Xạ Thủ"
+  location:
+    slot: 10
+    page: 2
+  custom-values:
+    - "0.6 * level"
+    - "0.15 * level"
+    - "3 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTQyZjQ0NWEzMjY2ZDNlZjE0NmRmZmZiZjY0NjU3MDgyNDY1NzBlNjM5YzkxYzVlNzU0YzNmMjRiMDMzNzFiZCJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fBắn trúng sẽ tích điểm &eNgắm Bắn&f."
+      - "&8(Tối đa &e5 điểm&8, tồn tại trong &c5 giây&8)."
+      - "&fNếu điểm Ngắm Bắn ≥ 3, tăng {value_1}%"
+      - "&fXuyên giáp trong 3 giây. Nếu điểm Ngắm Bắn "
+      - "&f= 5 sẽ reset về 0, gây thêm {value_2}% ST."
+      - ""
+      - "&eMỗi điểm Ngắm Bắn cung cấp:"
+      - "&7• Sát thương tầm xa &a+{value_0}%"
+      - "{state}"

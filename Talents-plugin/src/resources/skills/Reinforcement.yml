@@ -1,0 +1,21 @@
+Reinforcement:
+  display-name: "Gia cố"
+  location:
+    slot: 13
+    page: 2
+  custom-values:
+    - "0.15 * level"
+    - "0.7 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGE0Yzk5YTNiYzgyMWY4YjFkZjhiYzczMmUwM2UwZjNhZmEzMjY1ZjUzZjljOWVjZTNlZjY3YjU0ZDY1ZDdiZiJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi lần bị đánh tích 1 điểm &eGia cố&f."
+      - "&8(Tối đa &e4&8 điểm, biến mất sau 5 giây"
+      - "&8nếu không tích thêm điểm nào)."
+      - ""
+      - "&eMỗi điểm cung cấp:"
+      - "&7• Giảm sát thương: &a+{value_0}%"
+      - "&7• ST nhận vào: &a-{value_1}%"
+      - "{state}"

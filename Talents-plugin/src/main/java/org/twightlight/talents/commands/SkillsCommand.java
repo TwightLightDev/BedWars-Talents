@@ -1,6 +1,5 @@
 package org.twightlight.talents.commands;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,6 +9,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.twightlight.talents.Talents;
 import org.twightlight.talents.database.SQLite;
+import org.twightlight.talents.menus.skills.SkillMenu;
 import org.twightlight.talents.skills.Skill;
 import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.Utility;
@@ -31,10 +31,20 @@ public class SkillsCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if (args.length == 0) {
+            SkillMenu.open(p);
             return true;
         }
 
         String sub = args[0].toLowerCase();
+
+        if (sub.equalsIgnoreCase("menu")) {
+            int page = 1;
+            if (args.length >= 2 && Utility.isInteger(args[1])) {
+                page = Integer.parseInt(args[1]);
+            }
+            SkillMenu.open(p, page);
+            return true;
+        }
 
         if (sub.equalsIgnoreCase("list")) {
             if (!p.hasPermission("skills.admin")) {
@@ -92,7 +102,6 @@ public class SkillsCommand implements CommandExecutor {
             if (slot < 0 || slot > 3) {
                 p.sendMessage("Invalid slot!");
                 return true;
-
             }
 
             Talents.getInstance().getSkillsManager().deselectSkill(p, slot);
@@ -100,11 +109,15 @@ public class SkillsCommand implements CommandExecutor {
         }
 
         if (sub.equalsIgnoreCase("setlevel")) {
+            if (!p.hasPermission("skills.admin")) {
+                p.sendMessage(ChatColor.RED + "You don't have permission!");
+                return true;
+            }
+
             String skill = args[1];
             if (!Talents.getInstance().getSkillsManager().skillExist(skill)) {
                 p.sendMessage("Skill not found!");
                 return true;
-
             }
             int level;
 
@@ -117,7 +130,6 @@ public class SkillsCommand implements CommandExecutor {
             if (level < 0 || level > 20) {
                 p.sendMessage("Invalid level!");
                 return true;
-
             }
 
             if (Talents.getInstance().getSkillsManager().setLevelSkill(level, skill, p)) {
@@ -144,7 +156,6 @@ public class SkillsCommand implements CommandExecutor {
                         p.sendMessage("Skill: " + skill);
                     }
                 }
-
             }
             return true;
         }
@@ -199,4 +210,3 @@ public class SkillsCommand implements CommandExecutor {
         return true;
     }
 }
-

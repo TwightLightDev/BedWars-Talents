@@ -245,11 +245,11 @@ public class SQLite {
     }
 
     public boolean setMagicalSpirits(Player p, int i) {
-        return update(p, i, "skills", "soulstones");
+        return update(p, i, "skills", "magicalspirits");
     }
 
     public int getMagicalSpirits(Player p) {
-        Integer i = this.getData(p, "skills", "magicalspirots", new TypeToken<Integer>() {}, 0);
+        Integer i = this.getData(p, "skills", "magicalspirits", new TypeToken<Integer>() {}, 0);
         return i == null ? 0 : i;
     }
 

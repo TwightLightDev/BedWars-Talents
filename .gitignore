@@ -1,2 +1,14 @@
-# Project exclude paths
+# Compiled class files
+*.class
+
+# IntelliJ build folders
+/out/
 /target/
+/build/
+
+# Logs
+*.log
+
+# IntelliJ system files
+/.idea/
+*.iml

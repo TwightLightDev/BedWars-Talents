@@ -1,0 +1,17 @@
+IronWill:
+  display-name: "Ý Chí Sắt Đá"
+  location:
+    slot: 15
+    page: 1
+  custom-values:
+    - "0.2 * level"
+    - "0.3 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDQwNTdmYjRlYTBlMTc5ZDliNjYxYWYwMzBlNmEwNDZjMmJhZjJmNDc1ZTA0NmJiZTM3NDgzOTYxYTVjNTQ4ZiJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi lần bị đánh, có tỷ lệ 25% kích hoạt"
+      - "&dPhản đòn &fgây &c{value_0} &fST. và hồi"
+      - "&fcho bản thân &a{value_1}% &fmáu tối đa."
+      - "{state}"

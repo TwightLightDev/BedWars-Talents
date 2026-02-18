@@ -101,7 +101,6 @@ public class Combo extends Skill {
 
         // Update combo counter
         if (Utility.rollChance(25.0D) && currentHits > 0) {
-            // 25% chance to lose a combo stack
             currentHits--;
         } else if (currentHits < 7) {
             // Build combo (max 7 stacks)
@@ -118,7 +117,7 @@ public class Combo extends Skill {
     private void modifyAttribute(StatsMap statsMap, int level, int currentHits, boolean add) {
         if (currentHits == 0) return;
 
-        double penetration = 6.0E-2D * (double) level * (double) currentHits;
+        double penetration = 0.06 * (double) level * (double) currentHits;
         double critDamage = 0.125D * (double) level * (double) currentHits;
         double critChance = 0.05D * (double) level * (double) currentHits;
 

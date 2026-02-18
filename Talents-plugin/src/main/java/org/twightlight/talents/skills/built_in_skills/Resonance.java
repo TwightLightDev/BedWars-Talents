@@ -307,7 +307,7 @@ public class Resonance extends Skill {
 
                 IArena targetArena = util.getArenaByPlayer(target);
                 if (targetArena == null) continue;
-                if (targetArena.getTeam(target) == attackerTeam) continue; // same team
+                if (targetArena.getTeam(target) == attackerTeam) continue;
 
                 CombatUtils.dealUndefinedDamage(target, damage,
                         EntityDamageEvent.DamageCause.ENTITY_ATTACK, metadata, skipLayers);

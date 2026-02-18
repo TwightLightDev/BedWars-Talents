@@ -1,0 +1,29 @@
+Summoner:
+  display-name: "Triệu Hồi Sư"
+  location:
+    slot: 10
+    page: 3
+  custom-values:
+    - "1.25 * level"
+    - "level * 0.25"
+    - "level * 0.2"
+    - '3.9 + 0.1 * (level + floor((level / 20)))'
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjExMDlkOWM2Nzg2Yzc0N2M4N2ZjMzZjOWEyNzFkNTFmZjIwMTYwM2MzOGQyNjE1YWM0ODAzOTA4NjgwZTk4OCJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fĐánh cận chiến có &a{value_0}% &fcơ hội triệu"
+      - "&fhồi một &dQuái Vật Linh Hồn&f. &8(Tối đa: 2)."
+      - ""
+      - "&eQuái Vật Linh Hồn:"
+      - "&7• Sát thương cận chiến: &c{value_1}/đòn"
+      - "&8(Đòn đánh cận chiến được tính như một"
+      - "&8đòn đánh bổ sung)"
+      - "&7• Sát thương tầm xa: &c{value_2}/phát"
+      - "&8(Bắn tầm xa được tính như một phát bắn"
+      - "&8thường)"
+      - "&7• Thời gian tồn tại: &e3 giây"
+      - "&7• Bán kính hoạt động: &e{value_3} khối"
+      - "&7• Tấn công gây làm chậm mục tiêu"
+      - "{state}"

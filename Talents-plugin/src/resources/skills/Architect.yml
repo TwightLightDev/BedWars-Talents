@@ -1,0 +1,28 @@
+Architect:
+  display-name: "Kiến Trúc Sư"
+  location:
+    slot: 10
+    page: 1
+  custom-values:
+    - "0.2 * level"
+    - "0.125 * level"
+    - "0.125 * level"
+    - "1.6 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjUzOTBlM2NjMWYwNzQ0MWU5ZGUxMzk4NDBkMDgyMTdmODYxODU3ZmY5OGY0MjExYzc5ZjNjMGI0ODYwZDgwZSJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fĐặt khối để tích lũy &bTầng Xây Dựng&f."
+      - "&fMỗi &a50 khối tích &e1 tầng &7(tối đa &e4 tầng&7)."
+      - "&fNgừng xây &c10 giây sẽ bắt đầu mất tích lũy."
+      - ""
+      - "&eMỗi tầng cung cấp:"
+      - "&7• Giảm sát thương: &a+{value_0}%"
+      - "&7• Tỉ lệ &6block&f: &a+{value_1}%"
+      - "&7• Hiệu quả &6block&f: &a+{value_2}%"
+      - ""
+      - "&dKhiên Siêu Cấp &7(Tầng ≥ 3, Lv ≥ 10):"
+      - "&7ST nhận vào: &b-{value_3}% &7trong 5 giây"
+      - "&8(Hồi chiêu: &c30 giây&8)"
+      - "{state}"

@@ -1,0 +1,23 @@
+SoulCollector:
+  display-name: "Kẻ thu hồn"
+  location:
+    slot: 16
+    page: 2
+  custom-values:
+    - "level * 0.65"
+    - "level * 1.75"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTMwMTlmMGU4N2NiYmQ1NzVmOGU4ODA3MGNhMzdiYzI2NGMxOGViZjMyZDEzMzQ0ZjRmYWJhZWNhYTY0MTViNiJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi đòn đánh tích lũy 1 điểm &dLinh Hồn&f."
+      - "&fvà có &c25% &fcơ hội giải phóng tất cả linh hồn"
+      - "&fgây sát thương cực mạnh! Có &a{value_1}% cơ"
+      - "&fhội nhận x2 linh hồn."
+      - ""
+      - "&eKhi giải phóng linh hồn:"
+      - "&7• Sát thương đòn đánh: &a+{value_0}% × linh hồn"
+      - "&7• Nạn nhân sẽ bị &8Mù lòa &7trong 1 giây"
+      - "&7• Bạn sẽ nhận được &aTốc độ II &7trong 2 giây"
+      - "{state}"

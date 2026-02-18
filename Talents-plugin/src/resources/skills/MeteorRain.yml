@@ -1,0 +1,24 @@
+MeteorRain:
+  display-name: "Mưa Sao Băng"
+  location:
+    slot: 11
+    page: 2
+  custom-values:
+    - "0.04 + 0.004 * (level - 1)"
+    - "round(100 * (0.1 + level * 0.015))"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTAxODRlNGNhNDBmNzdjN2I4NjMwOWVhZTRlYWNiNjhjNzczOWYyMDZmMGM0OTQxMmY1MDdhMTAyOGMzMTZkOCJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi &e3 đòn cận chiến&f triệu hồi &6Sao Băng"
+      - "&fgây sát thương lan &c1.5 khối &fxung quanh."
+      - "&6Sao Băng &fgây &e{value_0} × số mục tiêu &fST "
+      - "&fdưới dạng &bđòn đánh bổ sung &fvà &cđốt cháy"
+      - "&ftất cả các mục tiêu trong 2 giây. &8(Nếu mục"
+      - "&8tiêu không phải người chơi sẽ gây 8 &fST chuẩn&8)."
+      - "&fNếu HP nạn nhân ≤ &c{value_1}% sẽ có 30% cơ hội"
+      - "&fđánh thêm 1 lần sau 1.5 giây"
+      - ""
+      - "&8(Stack tồn tại trong 4 giây)."
+      - "{state}"

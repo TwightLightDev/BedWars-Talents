@@ -16,7 +16,6 @@ import org.twightlight.talents.Talents;
 import org.twightlight.talents.database.SQLite;
 import org.twightlight.talents.menus.Button;
 import org.twightlight.talents.menus.ChatSessionService;
-import org.twightlight.talents.menus.talents.PlayerMenu;
 import org.twightlight.talents.skills.Skill;
 import org.twightlight.talents.users.User;
 import org.twightlight.talents.utils.ItemBuilder;
@@ -32,8 +31,8 @@ public class SkillItem {
 
     private String displayName;
 
-    private int x;
-    private int y;
+    private int slot;
+    private int page;
 
     private ItemStack base;
     private Button button;
@@ -46,14 +45,13 @@ public class SkillItem {
 
     static {
         df.setRoundingMode(RoundingMode.HALF_UP);
-
     }
 
     public SkillItem(String id, YamlConfiguration wrapper, Skill linkedSkill) {
         skillID = id;
         displayName = wrapper.getString(id + ".display-name");
-        x = wrapper.getInt(id + ".location.x", 0);
-        y = wrapper.getInt(id + ".location.y", 0);
+        slot = wrapper.getInt(id + ".location.slot", 0);
+        page = wrapper.getInt(id + ".location.page", 1);
         custom_values = wrapper.getStringList(id + ".custom-values");
         this.linkedSkill = linkedSkill;
 
@@ -67,7 +65,7 @@ public class SkillItem {
         base = ItemBuilder.parse(wrapper.getConfigurationSection(id), "item").toItemStack();
 
         button = new Button((e) -> {
-            Player p = (Player)e.getWhoClicked();
+            Player p = (Player) e.getWhoClicked();
             User user = User.getUserFromBukkitPlayer(p);
             if (user == null) return;
 
@@ -84,50 +82,44 @@ public class SkillItem {
                     if (magicalSpirits >= Utility.totalCost(costlist, level, level)) {
                         database.setMagicalSpirits(p, magicalSpirits - Utility.totalCost(costlist, level, level));
                         Talents.getInstance().getSkillsManager().upgradeSkill(1, skillID, p);
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aBạn đã nâng cấp thành công nâng cấp kĩ năng này"));
-                        if (PlayerMenu.getInstance(p) != null) {
-                            PlayerMenu menu = PlayerMenu.getInstance(p);
-                            menu.getHolder().open();
-                        }
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aBạn đã nâng cấp thành công kĩ năng này"));
+                        SkillMenu.open(p, page);
                     } else {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cBạn không đủ linh hồn ma thuật!"));
                     }
                 } else if (e.isRightClick()) {
                     p.closeInventory();
-                    PlayerMenu menux = PlayerMenu.getInstance(p);
                     p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aNhập một số nguyên tương ứng với số cấp độ bạn muốn nâng. Nhập 'cancel' để bỏ qua!"));
                     ChatSessionService.createSession(p, (s) -> {
                         if (s.equals("cancel")) {
                             ChatSessionService.end(p);
-                            p.openInventory(e.getClickedInventory());
+                            SkillMenu.open(p, page);
                         } else {
                             if (!Utility.isInteger(s)) {
                                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cBạn phải nhập một số nguyên!"));
-                                p.openInventory(e.getClickedInventory());
+                                SkillMenu.open(p, page);
                             } else {
                                 int increment = Integer.parseInt(s);
                                 if (level + increment > costlist.size()) {
                                     p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cBạn nhập số hơi lớn rồi đó! Tối đa là " + (costlist.size() - level)));
-                                    p.openInventory(e.getClickedInventory());
+                                    SkillMenu.open(p, page);
                                 } else {
                                     int totalCost = Utility.totalCost(costlist, level, level + increment - 1);
                                     if (database.getMagicalSpirits(p) < totalCost) {
                                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cBạn không đủ linh hồn ma thuật!"));
-                                        p.openInventory(e.getClickedInventory());
+                                        SkillMenu.open(p, page);
                                     } else {
                                         database.setMagicalSpirits(p, database.getMagicalSpirits(p) - totalCost);
                                         Talents.getInstance().getSkillsManager().upgradeSkill(increment, skillID, p);
                                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aBạn đã nâng cấp thành công kĩ năng này"));
-                                        menux.getHolder().open();
+                                        SkillMenu.open(p, page);
                                     }
                                 }
                             }
-
                             ChatSessionService.end(p);
                         }
                     });
                 }
-
             }
         }, (player) -> {
 
@@ -161,7 +153,7 @@ public class SkillItem {
                         stateLore.add("&aBạn đã nâng kĩ năng này lên tối đa!");
                     } else if (magicalSpirits < Utility.totalCost(linkedSkill.getCostList(), level, level)) {
                         stateLore.add("");
-                        stateLore.add("&cBạn không có đủ đá linh hồn để nâng cấp kĩ năng này ");
+                        stateLore.add("&cBạn không có đủ linh hồn ma thuật để nâng cấp kĩ năng này");
                     } else {
                         stateLore.add("");
                         stateLore.add("&eBạn cần &d" + costlist.get(level) + " &elinh hồn ma thuật để nâng cấp!");
@@ -178,10 +170,11 @@ public class SkillItem {
                 it.set(ChatColor.translateAlternateColorCodes('&', s));
             }
 
-
             String name = im.getDisplayName();
             String roman = Utility.toRoman(level);
-            name = name.replace("{color}", getColor(player)).replace("{displayName}", displayName).replace("{levelRoman}", (!roman.isEmpty() ? " " : "") + roman);
+            name = name.replace("{color}", getColor(player))
+                    .replace("{displayName}", displayName)
+                    .replace("{levelRoman}", (!roman.isEmpty() ? " " : "") + roman);
             im.setLore(lore);
             im.setDisplayName(name);
 
@@ -192,8 +185,8 @@ public class SkillItem {
                 if (level >= costlist.size() && !is.getType().name().contains("ENCHANTED")) {
                     is.addEnchantment(Enchantment.DAMAGE_ALL, 1);
                 }
-            } catch (RuntimeException ignore) {}
-
+            } catch (RuntimeException ignore) {
+            }
 
             if (level == 0) {
                 is.setType(XMaterial.BEDROCK.parseMaterial());
@@ -204,12 +197,12 @@ public class SkillItem {
         });
     }
 
-    public int getX() {
-        return x;
+    public int getSlot() {
+        return slot;
     }
 
-    public int getY() {
-        return y;
+    public int getPage() {
+        return page;
     }
 
     public String getSkillID() {
@@ -224,12 +217,12 @@ public class SkillItem {
         if (User.getUserFromBukkitPlayer(p) == null) {
             return ChatColor.COLOR_CHAR + "c";
         }
-        int soulstones = Talents.getInstance().getDb().getSoulStones(p);
-        int level = User.getUserFromBukkitPlayer(p).getTalentLevel(getSkillID());
+        int magicalSpirits = Talents.getInstance().getDb().getMagicalSpirits(p);
+        int level = User.getUserFromBukkitPlayer(p).getSkillLevel(getSkillID());
         if (level >= linkedSkill.getCostList().size()) {
             return ChatColor.COLOR_CHAR + "e";
         }
-        if (soulstones < Utility.totalCost(linkedSkill.getCostList(), level, level)) {
+        if (magicalSpirits < Utility.totalCost(linkedSkill.getCostList(), level, level)) {
             return ChatColor.COLOR_CHAR + "c";
         } else {
             return ChatColor.COLOR_CHAR + "a";

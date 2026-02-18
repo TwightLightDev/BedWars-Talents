@@ -9,8 +9,10 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.twightlight.talents.Talents;
 import org.twightlight.talents.database.SQLite;
+import org.twightlight.talents.menus.runes.RuneMenu;
 import org.twightlight.talents.menus.talents.PlayerMenu;
 import org.twightlight.talents.menus.talents.TalentsMenu;
+import org.twightlight.talents.runes.RunesManager;
 import org.twightlight.talents.utils.Utility;
 
 public class TalentsCommand implements CommandExecutor {
@@ -30,6 +32,12 @@ public class TalentsCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if (args.length == 0) {
+            if (PlayerMenu.getInstance(p) == null) {
+                PlayerMenu menu = new PlayerMenu(p, 1, 0);
+                menu.getHolder().open();
+            } else {
+                PlayerMenu.getInstance(p).getHolder().open();
+            }
             return true;
         }
 

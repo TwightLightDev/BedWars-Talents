@@ -1,0 +1,21 @@
+JusticeJudgement:
+  display-name: "Công Lý Phán Quyết"
+  location:
+    slot: 16
+    page: 1
+  custom-values:
+    - "1.5 + level * 0.075"
+    - "0.196 + 0.04 * (level + floor(level/20))"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2MwNGM5NzAyZTk3YmVmNWNkYTM2YTkzNmNiZjgyMGU0ODY5MWM3NTgxZTBjZGU1OTI1NmE3ZjNkYWM2YjNmYyJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi đòn đánh thường tích 1 điểm &6Phán xét."
+      - "&7Ở Lv 20 có thêm 45% cơ hội nhận thêm 1 điểm."
+      - "&fKhi điểm &6Phán xét &f= 4, trực tiếp &6⚡ Phán Xét"
+      - "&fđối thủ. Gây {value_0} + ({value_1} × số mạng hạ"
+      - "&fgục của mục tiêu) ST trực tiếp. &8(Max: 12)."
+      - ""
+      - "&8(Stack tồn tại trong 5 giây)."
+      - "{state}"

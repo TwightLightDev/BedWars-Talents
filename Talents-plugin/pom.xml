@@ -80,10 +80,7 @@
             <groupId>com.github.retrooper</groupId>
             <artifactId>packetevents-spigot</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.andrei1058.bedwars</groupId>
-            <artifactId>BedWars1058</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.github.cryptomorin</groupId>
             <artifactId>XSeries</artifactId>
@@ -91,10 +88,16 @@
         <dependency>
             <groupId>org.twightlight</groupId>
             <artifactId>PVPManager</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.andrei1058.bedwars</groupId>
+            <artifactId>BedWars1058</artifactId>
         </dependency>
         <dependency>
             <groupId>io.github.hmzel</groupId>
             <artifactId>particlesfx</artifactId>
+            <version>1.12</version>
         </dependency>
         <dependency>
             <groupId>org.twightlight</groupId>

@@ -55,7 +55,6 @@ public class RiftWalker extends Skill {
     private String lastLocationZMetadataValue = "skill.riftwalker.lastLocZ";
     private String lastWorldMetadataValue = "skill.riftwalker.lastWorld";
     private String decayTaskMetadataValue = "skill.riftwalker.decayTask";
-    private String lastStatValueMetadataValue = "skill.riftwalker.lastStatValue";
     private String damageLayerName = "riftwalkerDefenseLayer";
 
     // Distance thresholds

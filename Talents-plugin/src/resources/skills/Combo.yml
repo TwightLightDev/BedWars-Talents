@@ -1,0 +1,23 @@
+Combo:
+  display-name: "Combo"
+  location:
+    slot: 13
+    page: 1
+  custom-values:
+    - "0.06 * level"
+    - "0.125 * level"
+    - "0.05 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTQ1NmYwNmZjNmNkZWU5OGY3MTFhYzFlYWVjMzliNGZiMjVmYTEyMzdiNWFkZTQ4MzBhMzgxOWJlZjMxNWIxMyJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fMỗi đòn dánh liên tiếp tích lũy &eCombo&f."
+      - "&fTối đa &e7 combo&f. &c25% &fmất 1 combo."
+      - "&fCombo mất sau &c5 giây &fnếu không đánh tiếp."
+      - ""
+      - "&eMỗi combo cung cấp:"
+      - "&7• Xuyên giáp: &a+{value_0}%"
+      - "&7• Sát thương chí mạng: &a+{value_1}%"
+      - "&7• Tỉ lệ chí mạng: &a+{value_2}%"
+      - "{state}"

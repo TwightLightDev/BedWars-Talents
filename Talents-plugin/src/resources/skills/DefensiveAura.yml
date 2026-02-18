@@ -1,0 +1,24 @@
+DefensiveAura:
+  display-name: "Hào Quang Phòng Ngự"
+  location:
+    slot: 14
+    page: 1
+  custom-values:
+    - "level"
+    - "2 * level"
+    - "level"
+    - "0.75 * level"
+  item:
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTYzNzBiZDA1MDJiZjMxZDhlMmVlMzRhOTI2YTlhNDNhNzQ3Nzg3MjBkOWI1MzQxNWIwODA5YzI1M2NiNDZjMCJ9fX0="
+    name: "{color}{displayName}{levelRoman}"
+    lore:
+      - "&fKhi HP dưới &c50%&f, kích hoạt hào quang"
+      - "&frực rỡ trong 3 giây, tăng:"
+      - "&7• Giảm sát thương: &a+{value_0}%"
+      - "&7• Giảm sát thương chí mạng: &a+{value_1}%"
+      - "&7• Tỉ lệ &6block&7: &a+{value_2}%"
+      - "&7• Hiệu quả &6block&7: &a+{value_3}%"
+      - ""
+      - "&7Hồi chiêu: &a5 giây"
+      - "{state}"
