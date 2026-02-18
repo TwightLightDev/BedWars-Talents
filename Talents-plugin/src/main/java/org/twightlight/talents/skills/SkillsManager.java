@@ -105,6 +105,14 @@ public class SkillsManager {
         register("PhantomStrike", new PhantomStrike("PhantomStrike", normalCost));
         register("Resonance", new Resonance("Resonance", normalCost));
         register("RiftWalker", new RiftWalker("RiftWalker", normalCost));
+        register("GravityWell", new GravityWell("GravityWell", normalCost));
+        register("MirrorMark", new MirrorMark("MirrorMark", normalCost));
+        register("ChainLightning", new ChainLightning("ChainLightning", normalCost));
+        register("VoidAnchor", new VoidAnchor("VoidAnchor", normalCost));
+        register("SiphonField", new SiphonField("SiphonField", normalCost));
+        register("FrostGlyph", new FrostGlyph("FrostGlyph", normalCost));
+        register("EchoStrike", new EchoStrike("EchoStrike", normalCost));
+
     }
 
     public void selectSkill(Player p, int slot, String id) {
