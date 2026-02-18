@@ -3,7 +3,8 @@
 
 # IntelliJ build folders
 /out/
-/target/
+target/
+**/target/
 /build/
 
 # Logs
